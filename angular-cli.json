@@ -16,7 +16,7 @@
       "mobile": false,
       "styles": [
         "../node_modules/materialize-css/dist/css/materialize.min.css",
-        "styles.css"
+        "styles.scss"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",

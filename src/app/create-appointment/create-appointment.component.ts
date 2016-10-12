@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import { DATEPICKER_CONFIG } from './../config/datepicker.config';
 
 @Component({
   selector: 'app-create-appointment',
@@ -16,18 +17,13 @@ export class CreateAppointmentComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(2, this.rootElement);
-    const $rootElement = $(this.rootElement.nativeElement);
-
-
-    (<any>$rootElement.find('.datepicker')).pickadate({
-      selectMonths: true, // Creates a dropdown to control month
-      selectYears: 15 // Creates a dropdown of 15 years to control year
-    });
+    this.initializeDatepicker($(this.rootElement.nativeElement).find('.datepicker'));
   }
 
-  initialize() {
+  initializeDatepicker($datepicker) {
+    // options.monthsFull = []
 
+    (<any>$datepicker).pickadate(DATEPICKER_CONFIG);
   }
 
 }
