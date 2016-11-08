@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementRef } from '@angular/core';
+
 import { DATEPICKER_CONFIG } from './../config/datepicker.config';
+
+declare let $;
 
 @Component({
   selector: 'app-create-appointment',
@@ -8,22 +11,24 @@ import { DATEPICKER_CONFIG } from './../config/datepicker.config';
   styleUrls: ['./create-appointment.component.css']
 })
 export class CreateAppointmentComponent implements OnInit {
+  rootElement: ElementRef;
+  picker: any;
 
   constructor(
-    private rootElement: ElementRef
+    rootElement: ElementRef
   ) {
-    console.log(1, rootElement);
-    // this._rootElement = rootElement;
+    this.rootElement = rootElement;
   }
 
   ngOnInit() {
-    this.initializeDatepicker($(this.rootElement.nativeElement).find('.datepicker'));
+    this.initializeDatepicker();
   }
 
-  initializeDatepicker($datepicker) {
-    // options.monthsFull = []
+  initializeDatepicker() {
+    const $input = $('#createAppointment-DoB').pickadate(DATEPICKER_CONFIG);
+    const picker = $input.pickadate('picker');
 
-    (<any>$datepicker).pickadate(DATEPICKER_CONFIG);
+    this.picker = picker;
   }
 
 }
