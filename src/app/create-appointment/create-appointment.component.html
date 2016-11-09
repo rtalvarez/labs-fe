@@ -3,73 +3,50 @@
 
   <div class="row">
     <form class="col s12">
+        <capture-patient></capture-patient>
       <div class="row">
-        <div class="input-field col s4">
-          <input [(ngModel)]="firstName"
-                 name="createAppointment-firstName"
-                 id="createAppointment-firstName"
-                 type="text"
-                 class="validate">
-          <label for="createAppointment-firstName">Nombre</label>
-        </div>
-        <div class="input-field col s4">
-          <input [(ngModel)]="lastName"
-                 name="createAppointment-lastName"
-                 id="createAppointment-lastName"
-                 type="text"
-                 class="validate">
-          <label for="createAppointment-lastName">Apellidos</label>
-        </div>
-        <div class="input-field col s4">
-          <input [(ngModel)]="dateOfBirth"
-                 name="createAppointment-DoB"
-                 type="date"
-                 id="createAppointment-DoB"
-                 class="datepicker">
-          <label for="createAppointment-DoB">Fecha de nacimiento</label>
-        </div>
+        <capture-doctor></capture-doctor>
+        <!--<div class="input-field col s12">-->
+          <!--<input [(ngModel)]="doctor"-->
+                 <!--name="createAppointment-doctor"-->
+                 <!--id="createAppointment-doctor"-->
+                 <!--type="text"-->
+                 <!--class="validate">-->
+          <!--<label for="createAppointment-doctor">Nombre de tu doctor</label>-->
+        <!--</div>-->
       </div>
       <div class="row">
-        <div class="input-field col s12">
-          <input [(ngModel)]="doctor"
-                 name="createAppointment-doctor"
-                 id="createAppointment-doctor"
-                 type="text"
-                 class="validate">
-          <label for="createAppointment-doctor">Nombre de tu doctor</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input [(ngModel)]="study"
-                 name="createAppointment-study"
-                 id="createAppointment-study"
-                 type="text"
-                 class="validate">
-          <label for="createAppointment-study">Estudio requerido</label>
-        </div>
-      </div>
+        <capture-details></capture-details>
+        <!--<div class="input-field col s12">-->
+          <!--<input [(ngModel)]="study"-->
+                 <!--name="createAppointment-study"-->
+                 <!--id="createAppointment-study"-->
+                 <!--type="text"-->
+                 <!--class="validate">-->
+          <!--<label for="createAppointment-study">Estudio requerido</label>-->
+        <!--</div>-->
+      <!--</div>-->
 
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea [(ngModel)]="notes"
-                    class="materialize-textarea"
-                    name="createAppointment-notes"
-                    id="createAppointment-notes"
-                    cols="30"
-                    rows="10">
-          </textarea>
-          <label for="createAppointment-notes">Notas adicionales</label>
-        </div>
-      </div>
+      <!--<div class="row">-->
+        <!--<div class="input-field col s12">-->
+          <!--<textarea [(ngModel)]="notes"-->
+                    <!--class="materialize-textarea"-->
+                    <!--name="createAppointment-notes"-->
+                    <!--id="createAppointment-notes"-->
+                    <!--cols="30"-->
+                    <!--rows="10">-->
+          <!--</textarea>-->
+          <!--<label for="createAppointment-notes">Notas adicionales</label>-->
+        <!--</div>-->
+      <!--</div>-->
 
-      <div class="row">
-        <div class="input-field col s12">
-          <button class="btn waves-effect waves-light" type="submit" name="createApointment">
-            Agendar
-            <i class="material-icons right">send</i>
-          </button>
-        </div>
+      <!--<div class="row">-->
+        <!--<div class="input-field col s12">-->
+          <!--<button class="btn waves-effect waves-light" type="submit" name="createApointment">-->
+            <!--Agendar-->
+            <!--<i class="material-icons right">send</i>-->
+          <!--</button>-->
+        <!--</div>-->
       </div>
     </form>
   </div>

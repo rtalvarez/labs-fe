@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="input-field col s4">
+    <input [(ngModel)]="firstName"
+           name="capturePatient-firstName"
+           id="capturePatient-firstName"
+           type="text"
+           class="validate">
+    <label for="capturePatient-firstName">Nombre</label>
+  </div>
+  <div class="input-field col s4">
+    <input [(ngModel)]="lastName"
+           name="capturePatient-lastName"
+           id="capturePatient-lastName"
+           type="text"
+           class="validate">
+    <label for="capturePatient-lastName">Apellidos</label>
+  </div>
+  <div class="input-field col s4">
+    <input [(ngModel)]="dateOfBirth"
+           name="capturePatient-DoB"
+           type="date"
+           id="capturePatient-DoB"
+           class="datepicker">
+    <label for="capturePatient-DoB">Fecha de nacimiento</label>
+  </div>
+</div>

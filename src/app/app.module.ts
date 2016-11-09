@@ -7,6 +7,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CreateAppointmentComponent } from './create-appointment/create-appointment.component';
+import { CapturePatientComponent } from './capture-patient/capture-patient.component';
+import { CaptureDoctorComponent } from './capture-doctor/capture-doctor.component';
+import { CaptureDetailsComponent } from './capture-details/capture-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +20,10 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    CreateAppointmentComponent
+    CreateAppointmentComponent,
+    CapturePatientComponent,
+    CaptureDoctorComponent,
+    CaptureDetailsComponent
   ],
   imports: [
     BrowserModule,
