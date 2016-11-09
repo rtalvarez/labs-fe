@@ -1,10 +1,18 @@
 <div class="row">
   <div class="input-field col s4">
+    <i class="material-icons prefix">search</i>
+    <input type="text" id="capturePatient-patientTypeahead" class="capturePatient-patientTypeahead">
+    <label for="capturePatient-patientTypeahead">Buscar paciente ...</label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col s4">
     <input [(ngModel)]="firstName"
            name="capturePatient-firstName"
            id="capturePatient-firstName"
            type="text"
-           class="validate">
+           class="validate autocomplete">
     <label for="capturePatient-firstName">Nombre</label>
   </div>
   <div class="input-field col s4">

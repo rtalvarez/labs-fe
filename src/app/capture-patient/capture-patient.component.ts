@@ -22,6 +22,7 @@ export class CapturePatientComponent implements OnInit {
 
   ngOnInit() {
     this.initializeDatepicker();
+    this.initializeAutocomplete();
   }
 
   initializeDatepicker() {
@@ -29,5 +30,15 @@ export class CapturePatientComponent implements OnInit {
     const picker = $input.pickadate('picker');
 
     this.picker = picker;
+  }
+
+  initializeAutocomplete() {
+    $('#capturePatient-patientTypeahead').autocomplete({
+      data: {
+        "Apple": null,
+        "Microsoft": null,
+        "Google": 'http://placehold.it/250x250'
+      }
+    });
   }
 }
