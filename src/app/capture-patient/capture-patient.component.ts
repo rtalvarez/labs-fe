@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ElementRef } from '@angular/core';
+import { PatientsService } from './../services/patients/patients.service';
+import * as _ from 'lodash';
 
 import { DATEPICKER_CONFIG } from './../config/datepicker.config';
 
@@ -8,21 +9,23 @@ declare let $;
 @Component({
   selector: 'capture-patient',
   templateUrl: './capture-patient.component.html',
-  styleUrls: ['./capture-patient.component.css']
+  styleUrls: ['./capture-patient.component.css'],
+  providers: [PatientsService],
 })
 export class CapturePatientComponent implements OnInit {
-  rootElement: ElementRef;
-  picker: any;
+  private picker: any;
+  patientQuery: string;
 
   constructor(
-    rootElement: ElementRef
+    private patients: PatientsService
   ) {
-    this.rootElement = rootElement;
+    // this.rootElement = rootElement;
   }
 
   ngOnInit() {
     this.initializeDatepicker();
-    this.initializeAutocomplete();
+    // this.initializeAutocomplete();
+    // this.searchPatient = _.debounce(() => this.searchPatient(), 200);
   }
 
   initializeDatepicker() {
@@ -30,6 +33,19 @@ export class CapturePatientComponent implements OnInit {
     const picker = $input.pickadate('picker');
 
     this.picker = picker;
+  }
+
+  onPatientQueryChange() {
+    console.log('change');
+    if (this.patientQuery.length > 2) {
+      this.searchPatient();
+    }
+  }
+
+  searchPatient() {
+    console.log('getting patient: ', this.patientQuery);
+    debugger;
+    return this.patients.fetchPatients(this.patientQuery);
   }
 
   initializeAutocomplete() {

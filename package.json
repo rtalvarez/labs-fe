@@ -22,6 +22,7 @@
     "@angular/router": "~3.0.0",
     "core-js": "^2.4.1",
     "jquery": "^3.1.1",
+    "lodash": "^4.16.6",
     "materialize-css": "^0.97.7",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@types/jasmine": "^2.2.30",
     "@types/jquery": "^2.0.33",
+    "@types/lodash": "^4.14.38",
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.17",
     "codelyzer": "~0.0.26",
