@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {Http, Response} from '@angular/http';
+
+import 'rxjs/add/operator/map';
+import {Observable} from "rxjs/Rx";
 
 @Injectable()
 export class PatientsService {
@@ -8,7 +11,12 @@ export class PatientsService {
 
   }
 
-  fetchPatients(query) {
-    return this.http.get(`/api/patients?query=${query}`);
+  fetchPatients(query): Observable<Object[]> {
+    return this.http.get(`/api/patients?query=${query}`)
+      .map(this.extractData);
+  }
+
+  private extractData(res: Response) {
+    return JSON.parse(res.json()) || {};
   }
 }

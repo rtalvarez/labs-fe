@@ -14,6 +14,9 @@ declare let $;
 })
 export class CapturePatientComponent implements OnInit {
   private picker: any;
+  private results: any;
+  private errorMessage: any;
+  private typeaheadData: Object;
   patientQuery: string;
 
   constructor(
@@ -24,6 +27,7 @@ export class CapturePatientComponent implements OnInit {
 
   ngOnInit() {
     this.initializeDatepicker();
+    this.typeaheadData = {};
     // this.initializeAutocomplete();
     // this.searchPatient = _.debounce(() => this.searchPatient(), 200);
   }
@@ -36,25 +40,57 @@ export class CapturePatientComponent implements OnInit {
   }
 
   onPatientQueryChange() {
-    console.log('change');
     if (this.patientQuery.length > 2) {
       this.searchPatient();
     }
   }
 
   searchPatient() {
-    console.log('getting patient: ', this.patientQuery);
-    debugger;
-    return this.patients.fetchPatients(this.patientQuery);
+    this.patients.fetchPatients(this.patientQuery)
+      .subscribe(
+        patients => this.setPatients(patients),
+        errors => this.handleErrors(errors)
+      )
   }
 
-  initializeAutocomplete() {
-    $('#capturePatient-patientTypeahead').autocomplete({
-      data: {
-        "Apple": null,
-        "Microsoft": null,
-        "Google": 'http://placehold.it/250x250'
+  setPatients(patients) {
+    const transformed = this.transformDataForTypeahead(patients);
+    console.log('result', patients);
+    this.results = patients;
+
+    this.initializeAutocomplete(transformed);
+  }
+
+  handleErrors(errors) {
+    console.log('e', errors);
+  }
+
+  transformDataForTypeahead(source) {
+    const result = {};
+
+    _.each(source, (patient) => {
+      const key = `${patient.firstName} ${patient.lastName}`;
+
+      if (!this.typeaheadData[key]) {
+        this.typeaheadData[key] = true;
+        result[key] = null;
       }
+    });
+
+    console.log('transformed', result);
+    return result;
+  }
+
+  onTypeaheadChange(evt, widget) {
+    evt.preventDefault();
+
+    console.log('w', widget)
+  }
+
+  initializeAutocomplete(data) {
+    $('#capturePatient-patientTypeahead').autocomplete({
+      select: (evt, widget) => this.onTypeaheadChange(evt, widget),
+      data,
     });
   }
 }
