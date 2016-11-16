@@ -30,13 +30,19 @@ export class CapturePatientComponent implements OnInit {
     this.typeaheadData = {};
     // this.initializeAutocomplete();
     // this.searchPatient = _.debounce(() => this.searchPatient(), 200);
+    this.attachListener();
+  }
+
+  attachListener() {
+    console.log(1);
+    $('#capturePatient-patientTypeahead').on('change', (evt) => this.onTypeaheadChange(evt));
   }
 
   initializeDatepicker() {
-    const $input = $('#capturePatient-DoB').pickadate(DATEPICKER_CONFIG);
-    const picker = $input.pickadate('picker');
-
-    this.picker = picker;
+    // const $input = $('#capturePatient-DoB').pickadate(DATEPICKER_CONFIG);
+    // const picker = $input.pickadate('picker');
+    //
+    // this.picker = picker;
   }
 
   onPatientQueryChange() {
@@ -81,15 +87,14 @@ export class CapturePatientComponent implements OnInit {
     return result;
   }
 
-  onTypeaheadChange(evt, widget) {
+  onTypeaheadChange(evt) {
     evt.preventDefault();
 
-    console.log('w', widget)
+    console.log('w', evt);
   }
 
   initializeAutocomplete(data) {
     $('#capturePatient-patientTypeahead').autocomplete({
-      select: (evt, widget) => this.onTypeaheadChange(evt, widget),
       data,
     });
   }
