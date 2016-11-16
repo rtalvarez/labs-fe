@@ -1,0 +1,9 @@
+<div class="typeahead">
+  <i class="material-icons prefix">search</i>
+  <input [(ngModel)]="query" (ngModelChange)="onQueryChange()"
+         type="text"
+         id="typeahead-{{ name }}"
+         class="typeahead-input">
+  <label [attr.for]="'typeahead-' + name">Buscar paciente ...</label>
+</div>
+

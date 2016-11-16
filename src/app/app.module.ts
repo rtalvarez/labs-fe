@@ -10,6 +10,7 @@ import { CreateAppointmentComponent } from './create-appointment/create-appointm
 import { CapturePatientComponent } from './capture-patient/capture-patient.component';
 import { CaptureDoctorComponent } from './capture-doctor/capture-doctor.component';
 import { CaptureDetailsComponent } from './capture-details/capture-details.component';
+import { TypeaheadComponent } from './typeahead/typeahead.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
     CreateAppointmentComponent,
     CapturePatientComponent,
     CaptureDoctorComponent,
-    CaptureDetailsComponent
+    CaptureDetailsComponent,
+    TypeaheadComponent
   ],
   imports: [
     BrowserModule,
