@@ -44,7 +44,6 @@ export class TypeaheadComponent implements OnInit {
   }
 
   setData(data) {
-    console.log('set Data')
     const transformedData = this.transformData(data);
 
     this.$typeahead.autocomplete({
@@ -68,7 +67,7 @@ export class TypeaheadComponent implements OnInit {
     const result = {};
 
     _.each(source, (patient) => {
-      const key = `${patient.firstName} ${patient.lastName}`;
+      const key = `${patient.firstName} ${patient.lastName} (${patient.dateOfBirth})`;
 
       if (!this.typeaheadData[key]) {
         this.typeaheadData[key] = true;
@@ -76,7 +75,6 @@ export class TypeaheadComponent implements OnInit {
       }
     });
 
-    console.log('transformed', result);
     return result;
   }
 

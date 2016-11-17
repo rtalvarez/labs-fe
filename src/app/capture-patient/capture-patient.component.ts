@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { PatientsService } from './../services/patients/patients.service';
 
 import { DATEPICKER_CONFIG } from './../config/datepicker.config';
@@ -14,9 +14,13 @@ declare let $;
 export class CapturePatientComponent implements OnInit {
   private picker: any;
   private typeaheadData: Object;
+  private firstName: string;
+  private lastName: string;
+  private $el: any;
 
   constructor(
-    private patients: PatientsService
+      private patients: PatientsService,
+      private element: ElementRef
   ) {
   }
 
@@ -26,6 +30,7 @@ export class CapturePatientComponent implements OnInit {
 
     this.onTypeaheadItemSelected = this.onTypeaheadItemSelected.bind(this);
     this.searchPatient = this.searchPatient.bind(this);
+    this.$el = $(this.element.nativeElement);
   }
 
   initializeDatepicker() {
@@ -37,28 +42,49 @@ export class CapturePatientComponent implements OnInit {
 
   searchPatient(query) {
     return this.patients.fetchPatients(query);
-      // .subscribe(
-      //   patients => this.transformDataForTypeahead(patients),
-      //   errors => this.handleErrors(errors)
-      // )
   }
-
-  // setPatients(patients) {
-  //   const transformed = this.transformDataForTypeahead(patients);
-  //   console.log('result', patients);
-  //   this.results = patients;
-  //
-  //   this.setTypeaheadData(transformed);
-  // }
-  //
-  // handleErrors(errors) {
-  //   console.log('e', errors);
-  // }
-
 
   onTypeaheadItemSelected(evt) {
     evt.preventDefault();
 
-    console.log('w', evt);
+    const inputVals = $(evt.target).val().split(' ');
+
+    // Event gets fired twice, need to catch the correct one
+    if (inputVals.length !== 3) {
+      return;
+    }
+
+    this.firstName = inputVals[0];
+    this.lastName = inputVals[1];
+
+    this.setValue('firstName', inputVals[0]);
+    this.setValue('lastName', inputVals[1]);
+    this.setDate(inputVals[2]);
+  }
+
+  setDate(date) {
+    const formattedDate = date
+        .replace(/[()]/g,'')
+        .split('/')
+        .map((digit) => digit.length === 1 ? '0' + digit : digit)
+        .join('/');
+
+    this.picker.set('select', formattedDate, { format: 'mm/dd/yyyy' });
+    this.touchInput('DoB');
+  }
+
+  setValue(name, value) {
+    this[name] = value;
+    this.touchInput(name)
+  }
+
+  touchInput(name) {
+    this.$el
+        .find(`#capturePatient-${name}`)
+        .addClass('valid');
+
+    this.$el
+        .find(`#capturePatient-${name} + label`)
+        .addClass('active');
   }
 }
