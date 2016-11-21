@@ -67,8 +67,9 @@ export class TypeaheadComponent implements OnInit {
   transformData(source) {
     const result = {};
 
-    _.each(source, (patient) => {
-      const key = `${patient.firstName} ${patient.lastName} (${patient.dateOfBirth})`;
+    _.each(source, (entity) => {
+      const base = `${entity.firstName} ${entity.lastName}`;
+      const key = entity.dateOfBirth ? base + ` (${entity.dateOfBirth})` : base;
 
       if (!this.typeaheadData[key]) {
         this.typeaheadData[key] = true;

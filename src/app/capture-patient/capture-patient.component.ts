@@ -26,7 +26,6 @@ export class CapturePatientComponent implements OnInit {
 
   ngOnInit() {
     this.initializeDatepicker();
-    this.typeaheadData = {};
 
     this.onTypeaheadItemSelected = this.onTypeaheadItemSelected.bind(this);
     this.searchPatient = this.searchPatient.bind(this);

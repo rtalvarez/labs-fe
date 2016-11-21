@@ -16,6 +16,11 @@ export class PatientsService {
       .map(this.extractData);
   }
 
+  fetchDoctors(query): Observable<Object[]> {
+    return this.http.get(`/api/doctors?query=${query}`)
+      .map(this.extractData);
+  }
+
   private extractData(res: Response) {
     return JSON.parse(res.json()) || {};
   }
