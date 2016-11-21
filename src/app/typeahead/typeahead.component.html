@@ -1,6 +1,7 @@
-<div class="typeahead">
+<div class="typeahead input-field">
   <i class="material-icons prefix">search</i>
-  <input [(ngModel)]="query" (ngModelChange)="onQueryChange()"
+  <input [(ngModel)]="query"
+         (ngModelChange)="onQueryChange()"
          type="text"
          id="typeahead-{{ name }}"
          class="typeahead-input">

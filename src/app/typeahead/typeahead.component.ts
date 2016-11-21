@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'typeahead',
   templateUrl: './typeahead.component.html',
-  styleUrls: ['./typeahead.component.css'],
+  styleUrls: ['./typeahead.component.scss'],
   inputs: ['name'],
 })
 export class TypeaheadComponent implements OnInit {
@@ -25,10 +25,11 @@ export class TypeaheadComponent implements OnInit {
     element: ElementRef
   ) {
     this.element = element;
+    this.$el = $(element.nativeElement);
   }
 
   private attachListeners() {
-    this.$typeahead = $(this.element.nativeElement).find('.typeahead-input');
+    this.$typeahead = this.$el.find('.typeahead-input');
 
     this.$typeahead.on('change', this.onItemSelected);
   }
@@ -77,5 +78,4 @@ export class TypeaheadComponent implements OnInit {
 
     return result;
   }
-
 }

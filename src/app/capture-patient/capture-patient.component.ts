@@ -45,8 +45,6 @@ export class CapturePatientComponent implements OnInit {
   }
 
   onTypeaheadItemSelected(evt) {
-    evt.preventDefault();
-
     const inputVals = $(evt.target).val().split(' ');
 
     // Event gets fired twice, need to catch the correct one
