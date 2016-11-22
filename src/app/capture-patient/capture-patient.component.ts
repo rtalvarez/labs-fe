@@ -17,6 +17,7 @@ export class CapturePatientComponent implements OnInit {
   private firstName: string;
   private lastName: string;
   private $el: any;
+  private selectedPatient: Object;
 
   constructor(
       private patients: PatientsService,
@@ -43,20 +44,14 @@ export class CapturePatientComponent implements OnInit {
     return this.patients.fetchPatients(query);
   }
 
-  onTypeaheadItemSelected(evt) {
-    const inputVals = $(evt.target).val().split(' ');
+  onTypeaheadItemSelected(patient) {
+    this.firstName = patient.firstName;
+    this.lastName = patient.lastName;
+    this.selectedPatient = patient;
 
-    // Event gets fired twice, need to catch the correct one
-    if (inputVals.length !== 3) {
-      return;
-    }
-
-    this.firstName = inputVals[0];
-    this.lastName = inputVals[1];
-
-    this.setValue('firstName', inputVals[0]);
-    this.setValue('lastName', inputVals[1]);
-    this.setDate(inputVals[2]);
+    this.setValue('firstName', patient.firstName);
+    this.setValue('lastName', patient.lastName);
+    this.setDate(patient.dateOfBirth);
   }
 
   setDate(date) {

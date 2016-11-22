@@ -1,13 +1,26 @@
-//@import "../node_modules/materialize-css/fonts/"
-
-//@font-face {
-//  font-family: 'Roboto';
-//  src: url('./../node_modules/materialize-css/fonts/roboto/Roboto-Regular.eot'); /* IE9 Compat Modes */
-//  src: url('./../node_modules/materialize-css/fonts/roboto/Roboto-Regular.woff2') format('woff2'), /* Super Modern Browsers */
-//    url('./../node_modules/materialize-css/fonts/roboto/Roboto-Regular.woff') format('woff'), /* Pretty Modern Browsers */
-//    url('./../node_modules/materialize-css/fonts/roboto/Roboto-Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
-//}
-
 .hidden {
   display: none;
 }
+
+.unstyled-button {
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  &:focus {
+    background: transparent;
+  }
+}
+
+.dropdown-content {
+  position: absolute;
+}
+
+.panel {
+  border: 1px solid silver;
+  border-radius: 2px;
+  padding: 2rem;
+  background-color: white;
+}
+

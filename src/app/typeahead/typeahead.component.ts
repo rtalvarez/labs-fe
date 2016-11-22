@@ -28,10 +28,42 @@ export class TypeaheadComponent implements OnInit {
     this.$el = $(element.nativeElement);
   }
 
+  private clearQuery() {
+    this.$typeahead.val('');
+    this.$typeahead.blur();
+    this.query = '';
+
+    this.hideDropdown();
+  }
+
   private attachListeners() {
     this.$typeahead = this.$el.find('.typeahead-input');
 
-    this.$typeahead.on('change', this.onItemSelected);
+    //this.$typeahead.on('change', this.onItemSelected);
+    this.$typeahead.on('change', (evt) => this.onTypeaheadChange(evt));
+  }
+
+  onTypeaheadChange(evt) {
+    evt.preventDefault();
+    const inputVals = $(evt.target).val().split(' ');
+
+    // Evt is fired twice, need to catch the right one
+    if (inputVals.length === 1) {
+      return;
+    }
+
+    console.log('i', inputVals);
+    const entity = {
+      firstName: inputVals[0],
+      lastName: inputVals[1],
+      dateOfBirth: inputVals[2],
+      id: undefined,
+    };
+    const key = this.generateTypeaheadKey(entity);
+
+    entity.id = this.typeaheadData[key];
+
+    this.onItemSelected(entity);
   }
 
   ngOnInit() {
@@ -60,23 +92,42 @@ export class TypeaheadComponent implements OnInit {
         .subscribe(
           data => this.setData(data),
           errors => this.handleErrors(errors)
-        )
+        );
+
+      this.showDropdown();
     }
+  }
+
+  hideDropdown() {
+    this.$el
+        .find('.dropdown-content')
+        .addClass('hidden');
+  }
+
+  showDropdown() {
+    this.$el
+        .find('.dropdown-content')
+        .removeClass('hidden');
   }
 
   transformData(source) {
     const result = {};
 
     _.each(source, (entity) => {
-      const base = `${entity.firstName} ${entity.lastName}`;
-      const key = entity.dateOfBirth ? base + ` (${entity.dateOfBirth})` : base;
+      const key = this.generateTypeaheadKey(entity);
 
       if (!this.typeaheadData[key]) {
-        this.typeaheadData[key] = true;
+        this.typeaheadData[key] = entity.id;
         result[key] = null;
       }
     });
 
     return result;
+  }
+
+  generateTypeaheadKey(entity) {
+    const base = `${entity.firstName} ${entity.lastName}`;
+
+    return entity.dateOfBirth ? base + ` (${entity.dateOfBirth})` : base;
   }
 }
