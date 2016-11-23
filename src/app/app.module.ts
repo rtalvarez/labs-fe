@@ -11,10 +11,12 @@ import { CapturePatientComponent } from './capture-patient/capture-patient.compo
 import { CaptureDoctorComponent } from './capture-doctor/capture-doctor.component';
 import { CaptureDetailsComponent } from './capture-details/capture-details.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'appointments/create', component: CreateAppointmentComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -25,7 +27,8 @@ const routes: Routes = [
     CapturePatientComponent,
     CaptureDoctorComponent,
     CaptureDetailsComponent,
-    TypeaheadComponent
+    TypeaheadComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
