@@ -12,6 +12,7 @@ import { CaptureDoctorComponent } from './capture-doctor/capture-doctor.componen
 import { CaptureDetailsComponent } from './capture-details/capture-details.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
 import { LoginComponent } from './login/login.component';
+import { PillsTypeaheadComponent } from './pills-typeahead/pills-typeahead.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,7 +29,8 @@ const routes: Routes = [
     CaptureDoctorComponent,
     CaptureDetailsComponent,
     TypeaheadComponent,
-    LoginComponent
+    LoginComponent,
+    PillsTypeaheadComponent
   ],
   imports: [
     BrowserModule,

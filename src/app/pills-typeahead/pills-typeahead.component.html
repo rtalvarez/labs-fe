@@ -1,0 +1,20 @@
+<div class="typeahead row valign-wrapper">
+  <div class="col">
+    <div class="chips"></div>
+  </div>
+  <div class="col input-field">
+    <i class="material-icons prefix col">search</i>
+    <input [(ngModel)]="query"
+           (ngModelChange)="onQueryChange()"
+           type="text"
+           id="typeahead-{{ name }}"
+           class="typeahead-input">
+    <label [attr.for]="'typeahead-' + name">Buscar ...</label>
+  </div>
+  <div class="col">
+    <button *ngIf="query" class="col unstyled-button">
+      <i (click)="clearQuery()" class="material-icons col">clear</i>
+    </button>
+  </div>
+</div>
+

@@ -4,24 +4,23 @@
     <i *ngIf="areDetailsValid()" class="material-icons col">check</i>
   </div>
 
-  <div class="row">
-    <span class="col">Estudios seleccionados:</span>
-    <span class="col">
-      
-    </span>
-  </div>
-
   <div class="row valign-wrapper">
     <div class="col">
       <span>Busca un estudio</span>
     </div>
     <div class="input-field col">
-      <typeahead
+      <pills-typeahead
           [generateKey]="generateTypeaheadKey"
           [fetchData]="searchStudies"
           [name]="'studies'"
           [onItemSelected]="onTypeaheadItemSelected">
-      </typeahead>
+      </pills-typeahead>
+      <!--<typeahead-->
+          <!--[generateKey]="generateTypeaheadKey"-->
+          <!--[fetchData]="searchStudies"-->
+          <!--[name]="'studies'"-->
+          <!--[onItemSelected]="onTypeaheadItemSelected">-->
+      <!--</typeahead>-->
     </div>
   </div>
 </div>

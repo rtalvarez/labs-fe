@@ -70,8 +70,11 @@ export class TypeaheadComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.typeaheadData = {};
+    this.initialize();
+  }
 
+  initialize() {
+    this.typeaheadData = {};
     this.attachListeners();
   }
 
