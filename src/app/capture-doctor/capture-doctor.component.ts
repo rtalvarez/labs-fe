@@ -55,4 +55,8 @@ export class CaptureDoctorComponent implements OnInit {
         .find(`#captureDoctor-${name} + label`)
         .addClass('active');
   }
+
+  generateTypeaheadKey(doctor) {
+    return `${doctor.firstName} ${doctor.lastName}`;
+  }
 }

@@ -2,9 +2,10 @@
   <h5>Paciente</h5>
   <div class="input-field">
     <typeahead
-      [fetchData]="searchPatient"
-      [name]="'patient'"
-      [onItemSelected]="onTypeaheadItemSelected">
+        [generateKey]="generateTypeaheadKey"
+        [fetchData]="searchPatient"
+        [name]="'patient'"
+        [onItemSelected]="onTypeaheadItemSelected">
     </typeahead>
   </div>
 </section>

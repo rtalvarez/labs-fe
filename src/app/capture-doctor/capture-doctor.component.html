@@ -5,6 +5,7 @@
   </div>
   <div class="input-field">
     <typeahead
+            [generateKey]="generateTypeaheadKey"
             [fetchData]="searchDoctor"
             [name]="'doctor'"
             [onItemSelected]="onTypeaheadItemSelected">

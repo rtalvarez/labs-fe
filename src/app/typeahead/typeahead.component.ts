@@ -21,6 +21,9 @@ export class TypeaheadComponent implements OnInit {
   @Input()
   fetchData: Function;
 
+  @Input()
+  generateKey: Function;
+
   constructor(
     element: ElementRef
   ) {
@@ -59,7 +62,7 @@ export class TypeaheadComponent implements OnInit {
       dateOfBirth: inputVals[2],
       id: undefined,
     };
-    const key = this.generateTypeaheadKey(entity);
+    const key = this.generateKey(entity);
 
     entity.id = this.typeaheadData[key];
 
@@ -114,7 +117,7 @@ export class TypeaheadComponent implements OnInit {
     const result = {};
 
     _.each(source, (entity) => {
-      const key = this.generateTypeaheadKey(entity);
+      const key = this.generateKey(entity);
 
       if (!this.typeaheadData[key]) {
         this.typeaheadData[key] = entity.id;
@@ -123,11 +126,5 @@ export class TypeaheadComponent implements OnInit {
     });
 
     return result;
-  }
-
-  generateTypeaheadKey(entity) {
-    const base = `${entity.firstName} ${entity.lastName}`;
-
-    return entity.dateOfBirth ? base + ` (${entity.dateOfBirth})` : base;
   }
 }

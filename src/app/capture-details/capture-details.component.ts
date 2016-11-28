@@ -12,4 +12,20 @@ export class CaptureDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  searchStudies() {
+
+  }
+
+  onTypeaheadItemSelected() {
+
+  }
+
+  areDetailsValid() {
+    
+  }
+
+  generateTypeaheadKey(study) {
+    return `${study.name} (${study.price})`;
+  }
+
 }

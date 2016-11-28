@@ -1,3 +1,18 @@
 <p>
   capture-details works!
 </p>
+
+<div class="row">
+  <div class="row valign-wrapper">
+    <h5 class="col">Detalles</h5>
+    <i *ngIf="areDetailsValid()" class="material-icons col">check</i>
+  </div>
+
+  <div class="input-field">
+    <typeahead
+        [fetchData]="searchStudies"
+        [name]="'studies'"
+        [onItemSelected]="onTypeaheadItemSelected">
+    </typeahead>
+  </div>
+</div>

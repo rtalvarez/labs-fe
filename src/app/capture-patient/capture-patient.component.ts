@@ -40,6 +40,10 @@ export class CapturePatientComponent implements OnInit {
     this.picker = picker;
   }
 
+  generateTypeaheadKey(patient) {
+    return `${patient.firstName} ${patient.lastName} (${patient.dateOfBirth})`;
+  }
+
   searchPatient(query) {
     return this.patients.fetchPatients(query);
   }
