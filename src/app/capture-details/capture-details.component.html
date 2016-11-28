@@ -1,18 +1,27 @@
-<p>
-  capture-details works!
-</p>
-
 <div class="row">
   <div class="row valign-wrapper">
     <h5 class="col">Detalles</h5>
     <i *ngIf="areDetailsValid()" class="material-icons col">check</i>
   </div>
 
-  <div class="input-field">
-    <typeahead
-        [fetchData]="searchStudies"
-        [name]="'studies'"
-        [onItemSelected]="onTypeaheadItemSelected">
-    </typeahead>
+  <div class="row">
+    <span class="col">Estudios seleccionados:</span>
+    <span class="col">
+      
+    </span>
+  </div>
+
+  <div class="row valign-wrapper">
+    <div class="col">
+      <span>Busca un estudio</span>
+    </div>
+    <div class="input-field col">
+      <typeahead
+          [generateKey]="generateTypeaheadKey"
+          [fetchData]="searchStudies"
+          [name]="'studies'"
+          [onItemSelected]="onTypeaheadItemSelected">
+      </typeahead>
+    </div>
   </div>
 </div>

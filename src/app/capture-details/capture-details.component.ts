@@ -1,23 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { StudiesService } from '../services/studies/studies.service';
 
 @Component({
   selector: 'capture-details',
   templateUrl: './capture-details.component.html',
-  styleUrls: ['./capture-details.component.css']
+  styleUrls: ['./capture-details.component.css'],
+  providers: [StudiesService]
 })
 export class CaptureDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+      private studies: StudiesService
+  ) { }
 
   ngOnInit() {
+    this.searchStudies = this.searchStudies.bind(this);
   }
 
-  searchStudies() {
-
+  searchStudies(query) {
+    return this.studies.fetchStudies(query)
   }
 
-  onTypeaheadItemSelected() {
-
+  onTypeaheadItemSelected(study) {
+    console.log('selected', study);
   }
 
   areDetailsValid() {
@@ -25,7 +30,7 @@ export class CaptureDetailsComponent implements OnInit {
   }
 
   generateTypeaheadKey(study) {
-    return `${study.name} (${study.price})`;
+    return `${study.name} ($ ${study.price})`;
   }
 
 }
