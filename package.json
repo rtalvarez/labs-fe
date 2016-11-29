@@ -23,7 +23,7 @@
     "core-js": "^2.4.1",
     "jquery": "^3.1.1",
     "lodash": "^4.16.6",
-    "materialize-css": "0.97.8",
+    "materialize-css": "git@github.com:rtalvarez/materialize.git#3fb589592ab907e43365d82f07693ea68be28ff5",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.23"

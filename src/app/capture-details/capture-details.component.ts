@@ -25,12 +25,16 @@ export class CaptureDetailsComponent implements OnInit {
     console.log('selected', study);
   }
 
+  getPillTagName(study) {
+    return study.name;
+  }
+
   areDetailsValid() {
     
   }
 
   generateTypeaheadKey(study) {
-    return `${study.name} ($ ${study.price})`;
+    return `${study.name} ($${study.price})`;
   }
 
 }

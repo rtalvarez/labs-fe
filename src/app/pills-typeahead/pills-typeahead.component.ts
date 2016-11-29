@@ -8,6 +8,8 @@ import { TypeaheadComponent } from './../typeahead/typeahead.component';
   inputs: ['name'],
 })
 export class PillsTypeaheadComponent extends TypeaheadComponent {
+  private $pills: any;
+
   @Input()
       onItemSelected: Function;
 
@@ -17,16 +19,30 @@ export class PillsTypeaheadComponent extends TypeaheadComponent {
   @Input()
       generateKey: Function;
 
+  @Input()
+      getPillTagName: Function;
+
   constructor(
       element: ElementRef
   ) {
     super(element);
-    
-    this.initialize();
+
   }
 
   ngOnInit() {
     console.log('as dack as dack')
+    this.initialize();
+
+    this.$pills = this.$el.find('.chips');
   }
+
+  onTypeaheadChange(evt) {
+    console.log('pre as dack')
+    const pill = this.getPillTagName();
+
+    //this.addPill()
+    super.onTypeaheadChange(evt);
+  }
+
 
 }

@@ -8,7 +8,7 @@ import * as _ from 'lodash';
   inputs: ['name'],
 })
 export class TypeaheadComponent implements OnInit {
-  private $el: any;
+  protected $el: any;
   private query: string;
   private typeaheadData: Object;
   private element: ElementRef;
@@ -28,7 +28,6 @@ export class TypeaheadComponent implements OnInit {
     element: ElementRef
   ) {
     this.element = element;
-    this.$el = $(element.nativeElement);
   }
 
   private clearQuery() {
@@ -43,17 +42,20 @@ export class TypeaheadComponent implements OnInit {
     this.$typeahead = this.$el.find('.typeahead-input');
 
     //this.$typeahead.on('change', this.onItemSelected);
-    this.$typeahead.on('change', (evt) => this.onTypeaheadChange(evt));
+    this.$typeahead.on('change', (evt, data) => this.onTypeaheadChange(evt, data));
   }
 
-  onTypeaheadChange(evt) {
+  onTypeaheadChange(evt, data) {
     evt.preventDefault();
     const inputVals = $(evt.target).val().split(' ');
+    console.log('id', $(evt.target).data('id'))
 
     // Evt is fired twice, need to catch the right one
     if (inputVals.length === 1) {
       return;
     }
+
+    debugger;
 
     console.log('i', inputVals);
     const entity = {
@@ -74,6 +76,8 @@ export class TypeaheadComponent implements OnInit {
   }
 
   initialize() {
+    this.$el = $(this.element.nativeElement);
+    console.log(1, this.$el);
     this.typeaheadData = {};
     this.attachListeners();
   }
@@ -118,16 +122,22 @@ export class TypeaheadComponent implements OnInit {
 
   transformData(source) {
     const result = {};
+    console.log('s', source);
 
     _.each(source, (entity) => {
+      console.log('b', entity)
       const key = this.generateKey(entity);
 
-      if (!this.typeaheadData[key]) {
-        this.typeaheadData[key] = entity.id;
-        result[key] = null;
+      if (!this.typeaheadData[entity.id]) {
+        this.typeaheadData[entity.id] = entity;
+        //result[key] = null;
+        result[key] = {
+          id: entity.id
+        };
       }
     });
 
+    console.log('res', result)
     return result;
   }
 }
