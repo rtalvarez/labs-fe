@@ -45,30 +45,15 @@ export class TypeaheadComponent implements OnInit {
     this.$typeahead.on('change', (evt, data) => this.onTypeaheadChange(evt, data));
   }
 
-  onTypeaheadChange(evt, data) {
-    evt.preventDefault();
-    const inputVals = $(evt.target).val().split(' ');
-    console.log('id', $(evt.target).data('id'))
-
+  onTypeaheadChange(evt, evtData) {
     // Evt is fired twice, need to catch the right one
-    if (inputVals.length === 1) {
+    if (_.isUndefined(evtData)) {
       return;
     }
 
-    debugger;
+    const id = evtData.option.data('id');
 
-    console.log('i', inputVals);
-    const entity = {
-      firstName: inputVals[0],
-      lastName: inputVals[1],
-      dateOfBirth: inputVals[2],
-      id: undefined,
-    };
-    const key = this.generateKey(entity);
-
-    entity.id = this.typeaheadData[key];
-
-    this.onItemSelected(entity);
+    this.onItemSelected(this.typeaheadData[id]);
   }
 
   ngOnInit() {
