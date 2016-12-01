@@ -1,10 +1,10 @@
-<div class="typeahead">
+<div class="typeahead valign-wrapper">
   <div class="row">
+    <i class="material-icons prefix col">search</i>
     <div class="chips"></div>
   </div>
   <div class="row">
     <div class="col input-field">
-      <i class="material-icons prefix col">search</i>
       <input [(ngModel)]="query"
              (ngModelChange)="onQueryChange()"
              type="text"
