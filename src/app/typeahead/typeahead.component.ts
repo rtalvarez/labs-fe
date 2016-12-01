@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 export class TypeaheadComponent implements OnInit {
   protected $el: any;
   private query: string;
-  private typeaheadData: Object;
+  protected typeaheadData: Object;
   private element: ElementRef;
   private $typeahead: any;
   name: string;

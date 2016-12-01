@@ -1,5 +1,6 @@
 import { ElementRef, Input, Component, OnInit } from '@angular/core';
 import { TypeaheadComponent } from './../typeahead/typeahead.component';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'pills-typeahead',
@@ -9,6 +10,7 @@ import { TypeaheadComponent } from './../typeahead/typeahead.component';
 })
 export class PillsTypeaheadComponent extends TypeaheadComponent {
   private $pills: any;
+  private pillTagNames: Object;
 
   @Input()
       onItemSelected: Function;
@@ -34,14 +36,35 @@ export class PillsTypeaheadComponent extends TypeaheadComponent {
     this.initialize();
 
     this.$pills = this.$el.find('.chips');
+    this.pillTagNames = {};
+    console.log('pills', this.$pills)
   }
 
-  onTypeaheadChange(evt) {
-    console.log('pre as dack')
-    const pill = this.getPillTagName();
+  onTypeaheadChange(evt, evtData) {
+    if (_.isUndefined(evtData)) {
+      return;
+    }
 
-    //this.addPill()
-    super.onTypeaheadChange(evt);
+    console.log('pre as dack')
+    const entityId = evtData.option.data('id');
+    const pill = this.getPillTagName(this.typeaheadData[entityId]);
+    console.log('pillerino', pill)
+
+    this.addPill(pill);
+    super.onTypeaheadChange(evt, evtData);
+  }
+
+  addPill(tagName) {
+    this.pillTagNames[tagName] = true;
+
+    const tagNames = _.chain(this.pillTagNames)
+      .keys()
+      .map((keyName) => ({ tag: keyName }))
+      .value();
+
+    this.$pills.material_chip({
+      data: tagNames
+    });
   }
 
 
