@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'pills-typeahead',
   templateUrl: './pills-typeahead.component.html',
-  styleUrls: ['./pills-typeahead.component.css'],
+  styleUrls: ['./pills-typeahead.component.scss'],
   inputs: ['name'],
 })
 export class PillsTypeaheadComponent extends TypeaheadComponent {
@@ -65,6 +65,8 @@ export class PillsTypeaheadComponent extends TypeaheadComponent {
     this.$pills.material_chip({
       data: tagNames
     });
+
+    this.$el.find('.input').addClass('hidden');
   }
 
 
