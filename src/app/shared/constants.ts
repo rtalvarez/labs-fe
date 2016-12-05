@@ -11,4 +11,5 @@ export const DATEPICKER_OPTIONS = {
   formatSubmit: 'yyyy/mm/dd',
   selectMonths: true,
   selectYears: 200,
+  onSet: () => {},
 };

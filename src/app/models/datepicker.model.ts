@@ -9,4 +9,5 @@ export interface Datepicker {
   firstDay: number,
   format: String,
   formatSubmit: String,
+  onSet: Function,
 }
