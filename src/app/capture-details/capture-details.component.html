@@ -16,12 +16,23 @@
           [name]="'studies'"
           [onItemSelected]="onTypeaheadItemSelected">
       </pills-typeahead>
-      <!--<typeahead-->
-          <!--[generateKey]="generateTypeaheadKey"-->
-          <!--[fetchData]="searchStudies"-->
-          <!--[name]="'studies'"-->
-          <!--[onItemSelected]="onTypeaheadItemSelected">-->
-      <!--</typeahead>-->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <span>Selecciona una hora</span>
+    </div>
+
+    <div class="input-field col s12">
+      <select id="captureDetails-selectHour">
+        <option value="" disabled selected>Choose your option</option>
+        <option *ngFor="let slot of availableSlots" value="{{ slot.value }}">{{ slot.displayName }}</option>
+        <!--<option value="1">Option 1</option>-->
+        <!--<option value="2">Option 2</option>-->
+        <!--<option value="3">Option 3</option>-->
+      </select>
+      <label for="captureDetails-selectHour">Materialize Select</label>
     </div>
   </div>
 </div>
