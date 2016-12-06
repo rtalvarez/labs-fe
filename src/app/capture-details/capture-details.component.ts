@@ -40,6 +40,17 @@ export class CaptureDetailsComponent implements OnInit {
 
   onAppointmentDateChange(context) {
     console.log('new val', context)
+    const dateTime = this.appointments.getDatetimeString(context.select);
+
+    this.appointments.fetchAppointmentsByDate(dateTime)
+      .subscribe(
+        data => this.initializeSelect(data),
+        errors => this.handleErrors(errors)
+    );
+  }
+
+  handleErrors(errors) {
+    console.log('e', errors);
   }
 
   initializeDatepicker() {
@@ -50,7 +61,6 @@ export class CaptureDetailsComponent implements OnInit {
   }
 
   initializeSelect(data) {
-
     console.log('dates', data);
     this.availableSlots = [{
       value: 2,
