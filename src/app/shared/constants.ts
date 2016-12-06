@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 export const DATEPICKER_OPTIONS = {
   monthsFull: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
   monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
@@ -13,3 +15,5 @@ export const DATEPICKER_OPTIONS = {
   selectYears: 200,
   onSet: () => {},
 };
+
+export const AVAILABLE_APPOINTMENT_TIMES = _.range(8, 19, 1);

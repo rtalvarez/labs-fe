@@ -20,7 +20,7 @@
   </div>
 
   <div class="row">
-    <div class="input-field col s4">
+    <div class="input-field col s8">
       <input [(ngModel)]="appointmentDate"
              (ngModelChange)="onAppointmentDateChange($evt)"
              name="appointmentDate"
@@ -30,9 +30,9 @@
       <label for="appointmentDate">Selecciona un dia</label>
     </div>
 
-    <div class="input-field col s12">
-      <select id="captureDetails-selectHour">
-        <option value="" disabled selected>Choose your option</option>
+    <div class="input-field col s4">
+      <select id="captureDetails-selectHour" [(ngModel)]="appointmentTime">
+        <option value="" disabled selected>Selecciona una hora..</option>
         <option *ngFor="let slot of availableSlots" value="{{ slot.value }}">{{ slot.displayName }}</option>
       </select>
       <label for="captureDetails-selectHour">Selecciona una hora</label>

@@ -1,4 +1,4 @@
-import { ElementRef, Component, OnInit } from '@angular/core';
+import { ElementRef, Component, OnInit, ApplicationRef } from '@angular/core';
 import { StudiesService } from '../services/studies/studies.service';
 import { AppointmentsService } from '../services/appointments/appointments.service';
 
@@ -21,28 +21,22 @@ export class CaptureDetailsComponent implements OnInit {
   constructor(
       private appointments: AppointmentsService,
       private studies: StudiesService,
-      private element: ElementRef
+      private element: ElementRef,
+      private app: ApplicationRef
   ) { }
 
   ngOnInit() {
     this.$el = $(this.element.nativeElement);
     this.searchStudies = this.searchStudies.bind(this);
 
-
-    this.appointments.fetchAppointmentsByDate('2012-01-13')
-      .subscribe(
-        data => (this.initializeSelect(data))
-    );
-
     this.initializeDatepicker();
-    //this.initializeSelect();
   }
 
   onAppointmentDateChange(context) {
     console.log('new val', context)
     const dateTime = this.appointments.getDatetimeString(context.select);
 
-    this.appointments.fetchAppointmentsByDate(dateTime)
+    this.appointments.fetchAvailableAppointmentHours(dateTime)
       .subscribe(
         data => this.initializeSelect(data),
         errors => this.handleErrors(errors)
@@ -62,13 +56,18 @@ export class CaptureDetailsComponent implements OnInit {
 
   initializeSelect(data) {
     console.log('dates', data);
-    this.availableSlots = [{
-      value: 2,
-      displayName: "2"
-    }];
+
+    this.availableSlots = this.formatDataForSelect(data);
+
+    this.app.tick(); // aka $digest, so that ngFor can re-render the select before we initialize material_select
+    console.log('available slots', this.availableSlots);
 
     this.$selectHour = this.$el.find('#captureDetails-selectHour');
     this.$selectHour.material_select();
+  }
+
+  formatDataForSelect(data) {
+    return _.map(data, item => ({ value: item, displayName: item + ':00' }));
   }
 
   searchStudies(query) {
